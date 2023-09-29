@@ -3,10 +3,11 @@ In this repo, I'll talk about windows internals &lt;3
 
 ## Part 1 :
 ### 01. Introduction
-### Content
+### Contents
 1. Course Objectives
 2. Windows Versions
 3. Tools
+4. Summary
 
 ---
 
@@ -66,3 +67,34 @@ Sysinternals are free to download, And no installation is needed.
 #### Summary
 - Windows has maintained roughly the same architecture since the first Windows NT version
 - Various tools will be used throughout the course to demonstrate Windows features and behaviors
+
+---
+
+### 02. Basic Concepts
+### Contents
+1. User mode vs. Kernel mode
+2. Processes
+3. Threads
+4. Virtual memory
+5. Objects and handles
+6. Summary
+
+---
+
+#### User mode vs. Kernel mode
+- Whenever code executes, OS has one mode associated with it which may be user mode or kernel mode, so that associated with a thread. 
+##### User mode vs. kernel mode
+1. User mode
+- Less powerful mode that doens't allow access to operating system code or data.
+- No access to the hardware.
+- Any exception that is unhandled causes the only running process to crash.
+- Protects user applications from crashing the system(It will crash only the running process, nothing else).
+
+2. Kernel mode
+- Privileged mode for use by the kernel and device drivers only
+- Allows access to all system resources(Memory location, HW, anything...).
+- Any exception that is unhandled causes the system to crash, that's known as Blue Screen Of Death(BSOD).
+![BSOD](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/1925ee17-2c39-4685-b09b-c17197f14a85)
+
+---
+
