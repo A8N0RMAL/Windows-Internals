@@ -15,7 +15,7 @@ In this repo, I'll try talk about windows internals &lt;3
 - Uncover internal mechanisms relevant for developers
 - Enhance ability to write better software for Windows
 
-  ---
+---
   
 #### Windows Versions
 - Windows NT 3.1 (July 1993)
