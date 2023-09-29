@@ -90,6 +90,8 @@ Sysinternals are free to download, And no installation is needed.
 - Any exception that is unhandled causes the only running process to crash.
 - Protects user applications from crashing the system(It will crash only the running process, nothing else).
 
+---
+
 2. Kernel mode
 - Privileged mode for use by the kernel and device drivers only
 - Allows access to all system resources(Memory location, HW, anything...).
