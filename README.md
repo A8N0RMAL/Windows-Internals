@@ -34,7 +34,7 @@ In this repo, I'll talk about windows internals &lt;3
 
 #### Tools
 1. Windows built in Tools :
-- Task manager, resource monitor, performance monitor, others
+- Task manager, resource monitor, performance monitor, others.
 Windows built in comes with the windows and installed with it.
 
 2. Sysinternals :
