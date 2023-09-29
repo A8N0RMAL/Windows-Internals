@@ -35,7 +35,7 @@ In this repo, I'll talk about windows internals &lt;3
 #### Tools
 1. Windows built in Tools :
 - Task manager, resource monitor, performance monitor, others.
-Windows built in comes with the windows and installed with it.
+- Windows built in comes with the windows and installed with it.
 
 2. Sysinternals :
 - Obtained from http://www.sysinternals.com (which is redirected to
@@ -43,14 +43,14 @@ Windows built in comes with the windows and installed with it.
 - Most written by Mark Russinovich
 - No installation needed
 - Free
-Sysinternals you can downloaded from here, It’s a software suit that was built by Mark Russinovich and some other developers, 
+- Sysinternals you can downloaded from here, It’s a software suit that was built by Mark Russinovich and some other developers, 
 Sysinternals are free to download, And no installation is needed.
 
 3. Debugging tools for Windows
 - Now part of the Windows SDK
 - No installation needed
 - Free
-Debugging tools for windows part of windows sdk and it follows the same pattern as Sysinternals.
+- Debugging tools for windows part of windows sdk and it follows the same pattern as Sysinternals.
 
 ---
 
