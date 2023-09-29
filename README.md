@@ -43,7 +43,7 @@ In this repo, I'll talk about windows internals &lt;3
 - Most written by Mark Russinovich
 - No installation needed
 - Free
-- Sysinternals you can downloaded from here, It’s a software suit that was built by Mark Russinovich and some other developers, 
+- Sysinternals -> A software suit that was built by Mark Russinovich and some other developers, 
 Sysinternals are free to download, And no installation is needed.
 
 3. Debugging tools for Windows
