@@ -3,7 +3,7 @@ In this repo, I'll talk about windows internals &lt;3
 
 ## Part 1 :
 ### 01. Introduction
-### Contets
+### Content
 1. Course Objectives
 2. Windows Versions
 3. Tools
