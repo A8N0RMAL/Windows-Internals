@@ -160,7 +160,7 @@ Here's a simple example in C++:
 - The start address shows what is the address that the thread starts running with.
 
 >[!NOTE]
->[The ThreadIDs(TIDs) and ProcessIDs(PIDs) are coming from the same pool]
+>The ThreadIDs(TIDs) and ProcessIDs(PIDs) are coming from the same pool
 
 ![thr](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/42e421f6-80c0-4deb-b610-436c36879228)
 
