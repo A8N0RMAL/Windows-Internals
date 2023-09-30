@@ -123,8 +123,11 @@ Sysinternals are free to download, And no installation is needed.
 - A private storage area, called Thread Local Storage (TLS). I'll talk a little bit about TLS, U have to take a look <3
 #### TLS is useful in multi-threaded programming for several reasons:
 1. Isolation: Each thread can have its own independent variables or data without the need for explicit synchronization mechanisms like mutexes. This can lead to improved performance and reduced contention for shared resources.
-2.Thread Safety: TLS can help ensure thread safety by eliminating the need for locks when accessing thread-specific data. This can simplify the code and reduce the risk of deadlocks and other synchronization-related issues.
-3.Efficiency: Accessing thread-local storage is typically faster than accessing shared data, as it doesn't involve inter-thread communication or locking mechanisms.
+   
+2. Thread Safety: TLS can help ensure thread safety by eliminating the need for locks when accessing thread-specific data. This can simplify the code and reduce the risk of deadlocks and other synchronization-related issues.
+
+3. Efficiency: Accessing thread-local storage is typically faster than accessing shared data, as it doesn't involve inter-thread communication or locking mechanisms.
+
 - TLS is commonly used in programming languages and libraries that support multi-threading, such as C/C++ with the thread_local keyword or the pthread library for POSIX threads. In Java, thread-local storage can be implemented using the ThreadLocal class. Each thread can allocate and access its own instance of a variable stored in thread-local storage.
 Here's a simple example in C++:
 ![TLS](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/10230b27-fa9d-4c5f-8a25-91dcabaeea7d)
