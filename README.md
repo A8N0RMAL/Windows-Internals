@@ -218,7 +218,7 @@ Here's a simple example in C++:
 ![VMMap0](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/97d002d3-15dd-48ac-a193-a0f00578bdce)
 ![VMMap1](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/957e0815-39dd-4d67-958d-1abb371c12c6)
 
->[!NOTE]
+> [!NOTE]
 > Addresses are 2GB limit for 32bit processes.
 > Addresses are 8TB limit for 64bit processes.
 
