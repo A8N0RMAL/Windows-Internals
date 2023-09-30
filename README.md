@@ -218,9 +218,9 @@ Here's a simple example in C++:
 ![VMMap0](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/97d002d3-15dd-48ac-a193-a0f00578bdce)
 ![VMMap1](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/957e0815-39dd-4d67-958d-1abb371c12c6)
 
->[IMP]
->Addresses are 2GB limit for 32bit processes.
->Addresses are 8TB limit for 64bit processes.
+>[!IMP]
+> Addresses are 2GB limit for 32bit processes.
+> Addresses are 8TB limit for 64bit processes.
 
 - In process explorer we can see in Lower Pane View DLLs, Handles and Threads for each process.
 ![lpv](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/e97c2134-eeff-4d64-93c6-a94ebd10d7d7)
