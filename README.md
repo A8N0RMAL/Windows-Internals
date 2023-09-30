@@ -141,5 +141,39 @@ Here's a simple example in C++:
 - Ready State-> When threads wants to run but currently can't run because old cores (old logical processors) are currently executing code for other threads, So if i have 8 logical cores then 8 threads can run immediately but the 9th thread has to wait, So it will be in the ready state(wants to run).
 - Waiting State -> The thread doesn't want to run at all because it's waiting for something, this something can be I/O operation needs to return, it may be some kernel object the thread is waiting on before it can continue doing some work, In this case the thread doesn't consume any CPU cycles, When the thing that thread waiting upon finally arrives it moves to the ready state and hopefully to the running state as soon as possible depending on the other threads and the number of available logical processors(Cores).
 
+#### Let's dig deeper into threads
+- We can see thread information in Task Manager here is the performance tab, there are 204 processes in my system and 2776 threads, because my processor doesn't really do significant work, that means that most of these threads are in the waiting state.
+![threadinfo](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/f245ec6b-823b-4565-b92d-dfa65d06b798)
+
+- The details tab in Windows 11 task manager can show us the number of threads for each process. but nothing really more than that.
+![no threads](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/8342d0fd-e96a-4e04-a398-56c6fd583b24)
+
+#### To show more information we have to go to process explorer
+- In process explorer we can view each process's threads using the properties window, let's select svchost.exe for example and right click and choose properties.
+![px](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/a73cd422-c114-4f66-aacb-8e8435f1921d)
+
+- And here can see the properties window of this particuler process(svchost.exe).
+![prp](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/5217a05b-a93c-4d65-af90-e7656e3247a7)
+
+- The image tab shows some general information about the process such as its path, command line that started with, parent process, user that running this process and some other information, But there is a threads tab here that show all the threads that are currently in this particuler process.
+- For each thread we cann see several pieces of information the ThreadID, CPU consumption of this particuler thread and the number of cycles it accumelated since the last time this cycles were calculated and finally there is a start address.
+- The start address shows what is the address that the thread starts running with.
+
+>[!NOTE]
+>[The ThreadIDs(TIDs) and ProcessIDs(PIDs) are coming from the same pool]
+
+![thr](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/42e421f6-80c0-4deb-b610-436c36879228)
+
+- If we select a particuler thread we can even look at it's call stack, the call stack is so much interesting because it shows all the call stack from the user mode into kernel mode
+![utok](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/09b2f640-fe73-47ee-9c0e-b5c18cafe381)
+
+- At the bottom here we can see more attributes of the thread such as its state, the amount of time it spent in kernel mode and user mode, the number of context switches that exists for this particuler thread, number of cycles it totally ran that CPU cycles, some information about priority(Base abd Dynamic) i'll talk about the difference in process and thread modules a bit later <3
+![thr](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/42e421f6-80c0-4deb-b610-436c36879228)
+
+![threadinf0](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/0f77b994-345a-49c5-aa32-e74c709b0278)
+
+- U can also kill or suspend a thread which is usually a bad thing to do or perhaps a bit dangerous but if we have a thread that consumes a lot of CPU cycles we can suspend that.
+![sus](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/82bf417d-e664-4a66-b273-af2dbc87dffd)
+
 ---
 
