@@ -177,3 +177,58 @@ Here's a simple example in C++:
 
 ---
 
+#### Virtual Memory
+- #### Virtual Memory :
+- Each process "sees" a flat linear memory.
+- Internally, virtual memory may be mapped to physical memory, but may also be stored on disk.
+- Processes access memory regardless of where it actually resides.
+- The memory manager handles mapping of virtual to physical pages.
+- Processes cannot (and need not) know the actual physical address of a given address in virtual memory.
+
+![vmm](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/cb927cbb-0f55-45e5-9b81-dbc209713a05)
+
+![vml](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/9d6cfee8-0527-4d90-b5ab-bb4dda3e5990)
+
+#### Let's dig deeper into virtual memory
+- There are various tools that can show us memory information, for example task manager has a memory column here which is shown by default and that memory is a private working set(it's a term used to describe physical memory), so this column indicates the amount of physical memory that is used by the process as private memory(memory that is not shared with other processes)
+
+![phymemory](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/298a2843-fa92-4fc4-b0d9-82111437c2a1)
+
+- Let's look at the whole working set by right clicking and choose select columns and choose Memory(shared working set) and commit size to get how much memory a process consumes.
+
+![wholeworkingset](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/fb4dd913-95bc-4192-95cc-373814415dd6)
+
+![wholeworkingset0](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/2222964b-59fa-4e41-abce-35acee5796a3)
+
+- The other tool we can use is process explorer because it has some columns we can use to gain some more information about memory uasge.
+- Let's open process explorer and right clicking in processes and select columns.
+
+![prcexp](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/141d6175-a5a9-492a-950f-68dc295da021)
+
+- There is a process memory tab here which shows which shows various counters most of them is actually are available from performance monitor.
+- We can see private bytes which is the same as commit size in task manager.
+- So this may be kind of confusing, we'll take a deeper look at these counters in the memory management module.
+
+![prcmem](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/9365da26-771f-43b5-8d1e-841eb9f9e639)
+
+- Another tool we can use which is part of sysinternals tools is called VMMap, i'm not gonna show u all the functionality of VMMap but once we rrun that we need first to select a process.
+![VMMap](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/9580cc5a-274e-4bba-8cc4-d53fdeb005c2)
+
+- Let's select a explorer.exe process, and what this tool does it shows us the exact layout of the virtual address space of the particuler process, so we can see right here addresses which are rising up here to the 8TB limit of 64bit processes.
+![VMMap0](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/97d002d3-15dd-48ac-a193-a0f00578bdce)
+![VMMap1](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/957e0815-39dd-4d67-958d-1abb371c12c6)
+
+>[IMP]
+>Addresses are 2GB limit for 32bit processes.
+>Addresses are 8TB limit for 64bit processes.
+
+- In process explorer we can see in Lower Pane View DLLs, Handles and Threads for each process.
+![lpv](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/e97c2134-eeff-4d64-93c6-a94ebd10d7d7)
+![lpv0](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/5ba8a321-e084-4de5-a53d-51b2d3be5d6e)
+
+- We can also look at the System process which represents the kernel address space, so the modules here are actually drivers and the kernel itself.
+- We can see a lot of sys files which are drivers, Hardware Abstraction Layer(HAL) and the Kernel itself(ntoskrnl.exe)
+![sysspace](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/5f16bf59-a0a4-4512-b5cf-60ca3df7c197)
+
+---
+
