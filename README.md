@@ -100,3 +100,16 @@ Sysinternals are free to download, And no installation is needed.
 
 ---
 
+#### 03.Processes
+- ##### Process(Management obj.) :
+A set of resources used to execute a program, process doesn't run, threads run.
+A process is simply a manager.
+- ##### A process consists of :
+- A private virtual address space(where memory is allocated :")
+- An executable program, referring to an image file on disk which contains the initial code and data to be executed.
+- A table of handles to various kernel objects, for example -> If i'm openning a file, I'm use API such as a CreateFile function, if this CreateFile function is seccessful it returns a handle, that handle is simply a number that stored in a private table of that particuler process, that means that these handles cannot be used by another process.
+- A security context (access token), used for security checks when accessing shared resources.
+- One or more threads that execute code.
+
+---
+
