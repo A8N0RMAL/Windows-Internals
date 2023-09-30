@@ -100,16 +100,43 @@ Sysinternals are free to download, And no installation is needed.
 
 ---
 
-#### 03.Processes
+#### Processes
 - ##### Process(Management obj.) :
-A set of resources used to execute a program, process doesn't run, threads run.
-A process is simply a manager.
+- A set of resources used to execute a program, process doesn't run, threads run.
+- A process is simply a manager.
 - ##### A process consists of :
 - A private virtual address space(where memory is allocated :")
 - An executable program, referring to an image file on disk which contains the initial code and data to be executed.
 - A table of handles to various kernel objects, for example -> If i'm openning a file, I'm use API such as a CreateFile function, if this CreateFile function is successful it returns a handle, that handle is simply a number that stored in a private table of that particuler process, that means that these handles cannot be used by another process.
 - A security context (access token), used for security checks when accessing shared resources.
 - One or more threads that execute code.
+
+---
+
+#### Threads
+- #### Thread :
+- Entity that is scheduled by the kernel to execute code.
+#### A thread contains :
+- The state of CPU registers(that are saved in thread's stack).
+- Current access mode (user mode or kernel mode).
+- Two stacks, one in user space and one in kernel space.
+- A private storage area, called Thread Local Storage (TLS). I'll talk a little bit about TLS, U have to take a look <3
+#### TLS is useful in multi-threaded programming for several reasons:
+1. Isolation: Each thread can have its own independent variables or data without the need for explicit synchronization mechanisms like mutexes. This can lead to improved performance and reduced contention for shared resources.
+2.Thread Safety: TLS can help ensure thread safety by eliminating the need for locks when accessing thread-specific data. This can simplify the code and reduce the risk of deadlocks and other synchronization-related issues.
+3.Efficiency: Accessing thread-local storage is typically faster than accessing shared data, as it doesn't involve inter-thread communication or locking mechanisms.
+- TLS is commonly used in programming languages and libraries that support multi-threading, such as C/C++ with the thread_local keyword or the pthread library for POSIX threads. In Java, thread-local storage can be implemented using the ThreadLocal class. Each thread can allocate and access its own instance of a variable stored in thread-local storage.
+Here's a simple example in C++:
+![TLS](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/10230b27-fa9d-4c5f-8a25-91dcabaeea7d)
+- In this example, each thread has its own copy of thread_specific_variable, and changes made to it in one thread do not affect the value in the other thread.
+- Thread-local storage is a valuable tool in multi-threaded programming for managing thread-specific data and can help improve the performance and reliability of concurrent applications.
+#### Getting back to what thread contains :
+- Optional security token.
+- Optional message queue and Windows the thread creates(In this case it will be UI thread).
+- A priority, used in thread scheduling. from 0 to 31 (31 -> the highest priority).
+- A state: running, ready, waiting. Explaination below take a look :"
+- Ready State-> When threads wants to run but currently can't run because old cores (old logical processors) are currently executing code for other threads, So if i have 8 logical cores then 8 threads can run immediately but the 9th thread has to wait, So it will be in the ready state(wants to run).
+- Waiting State -> The thread doesn't want to run at all because it's waiting for something, this something can be I/O operation needs to return, it may be some kernel object the thread is waiting on before it can continue doing some work, In this case the thread doesn't consume any CPU cycles, When the thing that thread waiting upon finally arrives it moves to the ready state and hopefully to the running state as soon as possible depending on the other threads and the number of available logical processors(Cores).
 
 ---
 
