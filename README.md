@@ -107,7 +107,7 @@ A process is simply a manager.
 - ##### A process consists of :
 - A private virtual address space(where memory is allocated :")
 - An executable program, referring to an image file on disk which contains the initial code and data to be executed.
-- A table of handles to various kernel objects, for example -> If i'm openning a file, I'm use API such as a CreateFile function, if this CreateFile function is seccessful it returns a handle, that handle is simply a number that stored in a private table of that particuler process, that means that these handles cannot be used by another process.
+- A table of handles to various kernel objects, for example -> If i'm openning a file, I'm use API such as a CreateFile function, if this CreateFile function is successful it returns a handle, that handle is simply a number that stored in a private table of that particuler process, that means that these handles cannot be used by another process.
 - A security context (access token), used for security checks when accessing shared resources.
 - One or more threads that execute code.
 
