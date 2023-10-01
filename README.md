@@ -231,3 +231,64 @@ Here's a simple example in C++:
 
 ---
 
+#### Objects and Handles
+- Windows is an object based system, that means the kernel exposesand manages objects and provide some API to manipulate those objects, so objects can be created dynamically depending on what we wanna do.
+- Objects are run time instances of static structures. Examples -> process, mutex, event, desktop, file, thread. there are some of object types that the kernel provides.
+- These objects reside in system memory space(that means they can only be access directly by kernel code).
+- Kernel code can obtain direct pointer to an object and manipulate that instance technically bypass the API that provided for that particuler kind of object.
+- User mode can only obtain a handle to an object(cannot obtain it directly that's because system space is inaccessable in user mode, only the user address space is accessable).
+- A handle is an index in some table that points to a particuler object in kernel space.
+- A handle shields a user code from directly accessing an object because an object structure may change between OS versions, the API may change as well, but user code doesn't really notice because it uses a handle and indirect reference to that object.
+- Objects are reference counted.
+- The Object Manager is the entity resposible for creating, obtaining and otherwise manipulating objects.
+#### Let's dig deeper into objects and handles
+- We can see handle information in process explorer by selecting a process and looking at the lower pane with the handle's view selected.
+![handle](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/f091ed12-e4c8-4777-915d-daf0860c5f27)
+
+- Every process has its handle table(the handle table is always private to a particuler process).
+- I'm gonna show handle value, access mask and object addres.
+![handle0](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/17c2372a-493d-4a38-a338-da6f77662052)
+
+- The object address is the actual address in kernel space where the real object resides.
+- So this is must be a pointer to a kernel space.
+![handle1](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/604e3934-d3d8-4b65-bbeb-0b2aa56543f1)
+
+- The access mask here is a set of flags that indicates what can be done with this particuler handle.
+![handle2](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/18d0c3fb-8ff1-4432-8e3b-ede1f5f2fd15)
+
+- Let's see what we can do with this handles, first thing we can do is to let process explorer provide us some more information about the handle.
+![handle3](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/ce7d3938-9e50-442c-8571-8db8aff5b4f1)
+
+- We can see the name here more clearly, some description, the address, number of references and the handles to that particuler object.
+![handle4](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/6479e9b8-38f7-4ae3-ac44-5657ecc97459)
+
+- For the event we can see some special event information such as the type of the event which can be synchrinization or notification, these are the kernel terms for autoresetevent and manualresetevent that are perhaps more familier to user mode developers and the state for that object which currently is not signeled which means the flag that event represent is currently down.
+![handle5](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/0951082f-3658-4222-a8e6-a9c7de9fe227)
+
+- Let's get our hand dirty, Now i'll open WindowsMediaPlayer as shown here in process explorer.
+![handle6](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/1d9345a1-fc87-421a-bd0d-21d4bc3ce9fc)
+
+- Now if i try to execute another WindowsMediaPlayer it simply won't work, the reason for that is when WindowsMediaPlayer comes up it looks weather it's the first WindowsMediaPlayer or not, if it is the first it runs as usual but if it is not it simply communicates to the other existing WindowsMediaPlayer instance and simply shuts down(this process is so quick and u can't see the second WindowsMediaPlayer appearing in process explorer).
+- We can trick the second WindowsMediaPlayer to think that it's the first instance even though it's not.
+- If we look through the handle table of the WindowsMediaPlayer there is a handle here to a MUTEX called Mutant, that's named Microsoft_WMP_70_CheckForOtherInstanceMutex, it's kind of a hint :"
+![handle7](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/b4197a24-0039-4d69-9ea8-b3453d452f90)
+
+- So let me right click and close that handle now process explorer warn that closing a handle is very dangerous because usually this can cause the target process to lose some important information or be unable to perfrom its work, but in this case i'm gonna allow this to happen.
+![handle8](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/179e33ec-3c61-46bf-927e-8f39d67830a3)
+![handle9](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/ee9dcc93-dd16-4a9b-b0e7-e69ebbe76fa9)
+
+- Now we can see the handle turning red and goes await.
+![handle10](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/4a95329b-0e47-4195-bd16-d8caebe2ae86)
+
+- Now if i try to execute another WindowsMediaPlayer, i'm able to do that <3.
+![handle11](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/402e6e8e-e9b9-4480-acac-0bda3cfbfb22)
+
+#### Summary
+- A process is a management container for threads to execute code.
+- A Thread executes code on a CPU.
+- Multiple threads can execute concurrently on multiple CPUs.
+- Per process virtual memory provides a private address space isolated from other processes.
+- Kernel objects are accessed from user mode using private process handles.
+
+---
+
