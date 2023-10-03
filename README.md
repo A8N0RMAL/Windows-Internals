@@ -349,3 +349,28 @@ Here's a simple example in C++:
 
 ---
 
+### General architecture overview
+![GAO](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/9f8d86f4-e928-4fd9-aabd-4ab35c461ec9)
+
+---
+
+### Function call flow
+![FCF](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/3feaf274-dff4-41ea-9166-a72e2a08e628)
+
+---
+
+### Breif Overview of WinDbg
+##### WinDbg is part of the Debugging Tools for Windows
+##### Other debuggers in the tools: NTSD, CDB, KD
+##### All debuggers are based on the same engine: DbgEng.DII
+##### NTSD & CDB are user mode debuggers
+-  Practically identical - NTSD spawns a new console window if launched from a console window. 
+##### KD is a kernel mode debugger
+##### WinDbg can serve as a user mode or kernel mode debugger
+##### WinDbg is the only one with a graphical user interface
+##### Most important window is the Command window
+- Can do anything.
+- Some shortcuts available through the menu.
+
+---
+
