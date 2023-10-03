@@ -318,3 +318,34 @@ Here's a simple example in C++:
 
 ---
 
+### Windows Editions
+##### Windows XP Home
+- Designed as a replacement for the Windows 9x/ME family (“Consumer Windows”).
+##### Windows Professional (2000, XP, Vista, 7, 8)
+- Main desktop (client) OS.
+##### Windows Server Standard, Advanced, Datacenter editions (Windows 2000, 2003/R2, 2008/R2, 2012)
+- Server platforms.
+##### Other variants
+- XP starter, XP Home, Media center, Server Web Edition, Home, Premium, Ultimate, Business, Enterprise.
+#### Professional vs. Server
+- Same core system files
+##### Differences
+- Number of processors supported.
+- Maximum amount of RAM than can be used.
+- Maximum of concurrent network connections supported for file and print sharing.
+- Some services only appear in Server versions.
+- Other system policies and default settings (e.g. thread quantum).
+##### OS type can be discovered by calling GetVersionEx (Win32) or RtlGetVersion(WDK)
+#### Windows Numeric Versions
+- Windows NT 4 (4.0)
+- Windows 2000 (5.0)
+- Windows XP (5.1)
+- Windows Server 2003, 2003 R2 (5.2)
+- Windows Vista, Server 2008 (6.0)
+- Windows 7, Server 2008 R2 (6.1)
+- Windows 8, Server 2012 (6.2)
+- Windows 8.1, Server 2012 R2 (6.3)
+##### These values can be obtained using GetVersionEx (Win32) or RtlGetVersion (WDK)
+
+---
+
