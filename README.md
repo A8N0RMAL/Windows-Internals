@@ -292,3 +292,29 @@ Here's a simple example in C++:
 
 ---
 
+### 03. System Architecture (Part 1)
+### Contents
+1. Windows design goals.
+2. Windows editions.
+3. General architecture overview.
+4. Function call flow.
+5. Summary.
+
+---
+
+#### Windows Design Goals
+##### Separate address space per process
+- One process cannot (easily) corrupt another's memory.
+##### Protected kernel
+- User mode applications cannot crash kernel.
+##### Preemptive multitasking and multithreading Multiprocessing support
+##### Internationalization support using Unicode Security throughout the system
+##### Integrated networking
+##### Powerful file system (NTFS)
+- Supports protection, compression and encryption
+##### Run most 16 bit Windows and DOS apps On 32 bit systems
+##### Run POSIX 1003.1 and OS/2 applications
+#####  Portable across processors and platforms Be a great client as well as server platform
+
+---
+
