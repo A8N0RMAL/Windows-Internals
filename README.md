@@ -374,3 +374,10 @@ Here's a simple example in C++:
 
 ---
 
+#### Summary
+- Although there are many Windows editions, the kernel is basically the same.
+- User mode processes use subsystem DLLs to access OS functionality.
+- A system service call entails transitioning from user mode to kernel mode (and back).
+
+---
+
