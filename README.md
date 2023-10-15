@@ -413,3 +413,40 @@ Here's a simple example in C++:
 
 ---
 
+### Symmetric multiprocessing
+#### SMP
+- All CPUs are the same and share main memory and have equal access to peripheral devices (no master/slave).
+#### Basic architecture supports up to 32/64 CPUs (This was managed using a bitmask, that was the size of the machine word)
+- Windows 7 64 bit & 2008 R2 support up to 256 cores.
+- Uses a new concept of a "processor group".
+#### Actual number of CPUs determined by licensing and product type
+- Multiple cores do not count towards this limit.
+
+#### Let's dig deeper into symmetric multiprocessing
+- Lets loook at some information about processors we can view with tools, so i've my task manager open here on windows 11, and i can see under the CPU there is just one CPU here.
+![CPU](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/07a1f068-c49e-459e-a004-c0bd2c8c5af6)
+
+- Down here i can see that it has a one socket that means that it has just one chip and it has 6 cores but there are 12 logical processors.
+![socket](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/9fa947d8-96d8-42c9-a498-c66c1710244d)
+![cores](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/05d678f3-2e4e-4499-accb-3e88e304a740)
+![logicalprocessors](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/f6742295-77d9-4a75-ac1f-4d5fd7851457)
+
+- That means that each core is actually split into 2 logical processors using hyper-threading technology.
+If i right click here and change graph to logical processors.
+![changegraph](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/266f3396-cd4e-497e-b781-7b407e297dd6)
+
+- I can see the various processors right here, and each logical processor can execute one thread at a time, so technically i have 12 threads that can run at the same time.
+![logicalprocessors_](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/c60b5195-d70a-426d-8410-c038256fb245)
+
+- In previous versions of task manager these details won't shown, if u wanna se these details and perhaps a little more we can look at process explorer.
+- Using CTRL+i to view system information, and this shows us various information about the system naturally.
+![viewsysinfo](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/0b3c51be-181a-4cc9-b54d-86f4af695bc1)
+
+- Taking a look at CPU tab, By default it shows just one graph that actually is average of all logical processors on my system.
+![sysinfoCPU](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/cb240301-7f23-403a-bf24-e954b463cc65)
+
+- But i can show one graph per CPU, and again we can see one socket here and six cores in the topology part.
+![onegraphperCPU](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/f40edc8a-1739-4d54-889e-ec293d06c0ad)
+
+---
+
