@@ -381,3 +381,32 @@ Here's a simple example in C++:
 
 ---
 
+### 04. System Architecture (Part 1)
+### Contents
+1. Core system files Multiprocessing.
+2. Subsystems and NTDLL.
+3. System processes.
+4. Wow64.
+5. Summary.
+
+---
+
+### Core system files
+##### Ntoskrnl.exe
+- Executive and kernel on 64 bit systems
+##### NtKrnlPa.exe
+- Executive and kernel on 32 bit systems
+##### Hal.dll
+- Hardware Abstraction Layer
+##### Win32k.sys
+- Kernel component of the Windows subsystem
+- Handles windowing and GDI
+##### NtDII.dll
+- System support routines and Native API dispatcher to executive services
+##### Kernel32.dll, user32.dll, gdi32.dll, advapi32.dll
+- Core Windows subsystem DLLS
+#### CSRSS.exe ("Client Server Runtime SubSystem")
+- The Windows subsystem process, if u killed it u will get BSOD(BlueScreenOfDeath).
+
+---
+
