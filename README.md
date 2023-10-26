@@ -450,3 +450,55 @@ If i right click here and change graph to logical processors.
 
 ---
 
+### Subsystems and NTDLL
+#### Subsystems
+#### A subsystem is a special view of the OS
+- Exposes services via subsystem DLLS.
+#### Original NT shipped with Win32, OS/2 and POSIX 1003.1 (POSIX-1)
+- Windows XP dropped support for OS/2
+- An enhanced POSIX version is available with the "Services for UNIX" product
+#### The Windows subsystem must always be running
+- Owner of keyboard, mouse and display
+#### Some API functions use the Advanced Local Procedure Call (ALPC) to notify CSRSS of relevant events
+#### Other subsystems configured to load on demand
+#### Subsystem information stored in registry: HKLM\System\CCS\Control\Session Manager\Subsystems
+#### Let's dig deeper into this
+- Here is a screenshot of Windows 11 registry where the subsystems are located, we can see here in HKLM system which means that we're talking about something which is machine-wide and not user-relative.
+![regedit](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/5e32a209-5405-47a3-bbd7-fa3366a7bfc7)
+
+- We can see required value here(multiple string), Dubug and Windows.
+So, debug has currently nothing in it and that's because it is used internally by Microsoft.
+![dbgwin](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/48708e19-5262-4da6-9a00-1f6dbf00adae)
+
+- But Windows has something which exactly is csrss.exe, which means this will always come up when Windows starts up.
+![win](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/2ac8e590-e4d7-47d9-9550-066bfe0890ad)
+
+- The optional value here has a list of optional subsystems in this case, it is None(:
+![opt](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/b5a9e8de-3d8f-4e0f-81c8-2ccf4e19dbce)
+
+- win32k.sys path is the kernel mode component of the Windows subsystem which as u may call handles, windowing and GDI, so technically we can replace that which practically is very difficult to do because it's mostly undocumented but still it is possible.
+![win32k](https://github.com/A8N0RMAL/Windows-Internals/assets/119806250/b0d67ef3-2769-4434-83d8-77971d4f3b3a)
+
+### The Native API
+#### Implemented by NTDLL.DLL
+- Used by subsystem DLLs and "native" images
+- Undocumented interface
+- Lowest layer of user mode code
+#### Contains
+- Various support functions
+##### Dispatcher to kernel services
+- Most of them accessible using Windows API "wrappers"
+
+### Subsystem DLLs
+#### Every image belongs to exactly one subsystem
+- Value stored in image PE header
+- Can view with Dependency Walker (depends.exe)
+- Allows the Windows Loader to make correct decisions
+#### An image of a certain subsystem calls API functions exposed through the subsystem DLLs
+- E.g. kernel32.dll, user32.dll, etc. for the Windows subsystem
+#### Some images belong to no subsystem
+- "Native" images
+- Which API functions do they call? we'll discuss this just continue :"
+
+---
+
