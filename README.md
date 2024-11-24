@@ -1,5 +1,6 @@
 # Windows-Internals
 In this repo, I'll talk about windows internals &lt;3
+![ShowCover](https://github.com/user-attachments/assets/83c0e7d8-ab2f-43c3-9623-ffef05a1bde3)
 
 ## Part 1 :
 ### 01. Introduction
